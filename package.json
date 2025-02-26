@@ -1,0 +1,55 @@
+{
+  "name": "latex-expander",
+  "displayName": "Latex Expander",
+  "description": "LaTeX: Expand Project, replace \\include, \\input and generate a single final tex file",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neolaf2/latex-expander.git"
+  },
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:latex-expander.expandDefault",
+    "onCommand:latex-expander.expandPrompt"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "latex-expander.expandDefault",
+        "title": "LaTeX-Expander: Expand Project (Default)"
+      },
+      {
+        "command": "latex-expander.expandPrompt",
+        "title": "LaTeX-Expander: Expand Project (Prompt Output Name)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "latex-expander.expandDefault",
+          "when": "resourceLangId == latex",
+          "group": "navigation"
+        },
+        {
+          "command": "latex-expander.expandPrompt",
+          "when": "resourceLangId == latex",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  }
+}
